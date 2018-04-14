@@ -1,24 +1,26 @@
 var path = require('path');
 
 module.exports = {
-  entry: './widgets.jsx',
+  context: __dirname,
+  entry: "./widgets.jsx",
   output: {
-    filename: './bundle.js',
+    path: path.resolve(__dirname),
+    filename: "bundle.js"
   },
   module: {
     loaders: [
       {
-        test: [/\.jsx?$/],
-        exclude: /(node_modules)/,
+        test: [/\.jsx?$/, /\.js?$/],
+        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['env', 'react']
+          presets: ['react', 'es2015']
         }
       }
     ]
   },
-  devtool: 'source-map',
+  devtool: 'source-maps',
   resolve: {
-    extensions: ['.js', '.jsx', '*']
+    extensions: [".js", '.jsx', '*']
   }
 };
